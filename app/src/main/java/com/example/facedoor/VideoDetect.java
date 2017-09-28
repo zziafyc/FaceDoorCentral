@@ -1,20 +1,5 @@
 package com.example.facedoor;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import com.example.facedoor.util.FaceRect;
-import com.example.facedoor.util.FaceUtil;
-import com.example.facedoor.util.ParseFDResult;
-import com.iflytek.cloud.FaceDetector;
-import com.iflytek.cloud.util.Accelerometer;
-
 import android.Manifest.permission;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -50,6 +35,21 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 import android.widget.Toast;
+
+import com.example.facedoor.util.FaceRect;
+import com.example.facedoor.util.FaceUtil;
+import com.example.facedoor.util.ParseFDResult;
+import com.iflytek.cloud.FaceDetector;
+import com.iflytek.cloud.util.Accelerometer;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class VideoDetect extends Activity implements DialogInterface.OnClickListener {
 	private final static String TAG = VideoDetect.class.getSimpleName();
@@ -310,9 +310,9 @@ public class VideoDetect extends Activity implements DialogInterface.OnClickList
 					Log.e("VideoDetect", "faceCount:" + mFaceCount + "noFacesCount:" + noFacesCount);
 					if (mFaceCount > 0 && noFacesCount > 50) {
 						mFaceCount = 0;
-						mStopTrack = true;
-						MyApp myApp = (MyApp) VideoDetect.this.getApplication();
-						myApp.onTerminate();
+//						mStopTrack = true;
+//						MyApp myApp = (MyApp) VideoDetect.this.getApplication();
+//						myApp.onTerminate();
 					}
 					// prevent multi faces
 					if (faces != null && faces.length != 1) {
