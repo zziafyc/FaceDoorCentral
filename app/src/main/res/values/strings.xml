@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">中用科技有限公司</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">退出</string>
+    <string name="appid">57e1115d</string>
+    <!-- MainActivity -->
+    <string name="do_admin">管理</string>
+    <string name="do_start">启动</string>
+    <string name="error_pwd">密码错</string>
+    <!-- AdminAcitvity -->
+    <string name="register">人员管理</string>
+    <string name="manage_group">组和服务器管理</string>
+    <string name="query">查询</string>
+        <!-- VocalVerifyActivity -->
+    <string name="vocalverityactivity">声纹注册界面</string>
+    <string name="vocalverify"> 声纹注册</string>
+    <string name="moxing">模型认证</string>
+    <string name="presstotalk">模型删除</string>
+    <string name="yanzheng">声纹验证界面</string>
+</resources>
