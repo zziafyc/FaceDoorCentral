@@ -307,7 +307,7 @@ public class VideoDetect extends Activity implements DialogInterface.OnClickList
 					if (faces == null || faces.length == 0) {
 						noFacesCount++;
 					}
-					Log.e("VideoDetect", "faceCount:" + mFaceCount + "noFacesCount:" + noFacesCount);
+					//Log.e("VideoDetect", "faceCount:" + mFaceCount + "noFacesCount:" + noFacesCount);
 					if (mFaceCount > 0 && noFacesCount > 50) {
 						mFaceCount = 0;
 //						mStopTrack = true;

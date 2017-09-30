@@ -1,8 +1,5 @@
 package com.example.facedoor;
 
-import com.example.facedoor.util.Moniter;
-import com.example.facedoor.util.ToastShow;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +9,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.facedoor.util.Moniter;
+import com.example.facedoor.util.ToastShow;
 
 public class MainActivity extends Activity implements OnClickListener {
 
@@ -24,7 +24,6 @@ public class MainActivity extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
 		mToast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
 
 		EditText editText = (EditText) findViewById(R.id.admin);
@@ -63,6 +62,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		super.onDestroy();
 		MyApp myApp = (MyApp) MainActivity.this.getApplication();
 		myApp.removeActivity(this);
+		stopMoniter();
 	}
 
 	@Override
@@ -87,5 +87,9 @@ public class MainActivity extends Activity implements OnClickListener {
 	private void startMoniter() {
 		Intent intent = new Intent(MainActivity.this, Moniter.class);
 		startService(intent);
+	}
+	private void stopMoniter() {
+		Intent intent = new Intent(MainActivity.this, Moniter.class);
+		stopService(intent);
 	}
 }
