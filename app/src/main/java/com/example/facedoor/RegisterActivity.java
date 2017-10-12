@@ -107,6 +107,18 @@ public class RegisterActivity extends Activity implements OnClickListener {
 		mGroups = (LinearLayout) findViewById(R.id.online_groups);
 		mGroups.setBackgroundColor(getResources().getColor(R.color.list));
 		mLayout = findViewById(R.id.register_layout);
+		mProDialog = new ProgressDialog(this);
+		mProDialog.setCancelable(true);
+		mProDialog.setTitle("请稍候");
+		// cancel进度框时，取消正在进行的操作
+		mProDialog.setOnCancelListener(new OnCancelListener() {
+
+			@Override
+			public void onCancel(DialogInterface dialog) {
+
+			}
+		});
+
 
 		mToast = Toast.makeText(RegisterActivity.this, "", Toast.LENGTH_SHORT);
 		mToast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);

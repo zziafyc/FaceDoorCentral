@@ -311,7 +311,6 @@
             android:hint="门的编号"
             android:maxLength="6"
             android:maxLines="1"
-            android:numeric="integer"
             android:singleLine="true"
             android:textSize="30sp" />
 

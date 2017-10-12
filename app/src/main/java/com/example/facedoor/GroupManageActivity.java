@@ -1,17 +1,5 @@
 package com.example.facedoor;
 
-import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import com.example.facedoor.db.DBUtil;
-import com.example.facedoor.db.GroupManager;
-import com.example.facedoor.ui.DropEditText;
-import com.example.facedoor.util.ToastShow;
-import com.iflytek.cloud.ErrorCode;
-import com.iflytek.cloud.IdentityVerifier;
-import com.iflytek.cloud.InitListener;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -30,6 +18,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.example.facedoor.db.DBUtil;
+import com.example.facedoor.db.GroupManager;
+import com.example.facedoor.ui.DropEditText;
+import com.example.facedoor.util.ToastShow;
+import com.iflytek.cloud.ErrorCode;
+import com.iflytek.cloud.IdentityVerifier;
+import com.iflytek.cloud.InitListener;
+
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
