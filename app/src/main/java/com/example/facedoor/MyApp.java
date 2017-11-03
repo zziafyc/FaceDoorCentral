@@ -1,15 +1,15 @@
 package com.example.facedoor;
 
-import java.util.ArrayList;
-import java.util.List;
+import android.app.Activity;
+import android.app.Application;
+import android.content.Intent;
 
 import com.example.facedoor.db.DBManage;
 import com.example.facedoor.exception.CrashHandler;
 import com.iflytek.cloud.SpeechUtility;
 
-import android.R.string;
-import android.app.Activity;
-import android.app.Application;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MyApp extends Application {
 
@@ -28,6 +28,7 @@ public class MyApp extends Application {
 
 	private DBManage db;
 	private List<Activity> activities = new ArrayList<Activity>();
+	Intent serviceIntent;
 
 	@Override
 	public void onCreate() {
@@ -37,6 +38,11 @@ public class MyApp extends Application {
 
 		CrashHandler handler = CrashHandler.getInstance();
 		handler.init(getApplicationContext());
+
+		//启动dds服务
+		serviceIntent = new Intent(this, DDSService.class);
+		serviceIntent.setAction("start");
+		startService(serviceIntent);
 	}
 
 	public DBManage getDBManage() {
@@ -58,6 +64,7 @@ public class MyApp extends Application {
 			activity.finish();
 		}
 		db.closeDB();
+		stopService(serviceIntent);
 		System.exit(1);
 	}
 }

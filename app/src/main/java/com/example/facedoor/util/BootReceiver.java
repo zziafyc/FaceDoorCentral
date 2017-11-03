@@ -1,11 +1,11 @@
 package com.example.facedoor.util;
 
-import com.example.facedoor.MainActivity;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
+
+import com.example.facedoor.FaceIndexActivity;
 
 public class BootReceiver extends BroadcastReceiver{
 	
@@ -15,7 +15,7 @@ public class BootReceiver extends BroadcastReceiver{
 	public void onReceive(Context context, Intent intent) {
 		if (intent.getAction().equals(ACTION)) {
 			Toast.makeText(context, "boot completed", Toast.LENGTH_SHORT).show();
-			Intent mainIntent = new Intent(context,MainActivity.class);
+			Intent mainIntent = new Intent(context,FaceIndexActivity.class);
 			mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			context.startActivity(mainIntent);
 		}

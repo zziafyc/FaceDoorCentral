@@ -32,4 +32,8 @@
     <color name="password">#00EE00</color>
     <color name="listview">#7FFFD4</color>
     <color name="list">#D1EEEE</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
 </resources>

@@ -80,11 +80,13 @@ public class VideoDetect extends Activity implements DialogInterface.OnClickList
     private static int mFaceCount = 0;
 
     private Intent mIntent;
+    private long lastTime;  //这个时间标记是最后人脸检测的时间
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_detect);
+        lastTime = System.currentTimeMillis();
 
         initUI();
 
@@ -265,6 +267,11 @@ public class VideoDetect extends Activity implements DialogInterface.OnClickList
             public void run() {
                 surfaceHolder = mFaceSurface.getHolder();
                 while (!mStopTrack) {
+                    //合理规定时间为1分钟
+                    if (System.currentTimeMillis() - lastTime > 60000) {
+                        finish();
+                        break;
+                    }
                     synchronized (mNV21) {
                         System.arraycopy(mNV21, 0, mBuffer, 0, mNV21.length);
                     }
@@ -361,6 +368,7 @@ public class VideoDetect extends Activity implements DialogInterface.OnClickList
                             surfaceHolder.unlockCanvasAndPost(canvas);
 
                             if (faces.length > 0) {
+                                lastTime = System.currentTimeMillis();
                                 detectTimes++;
                                 if (detectTimes == 3) {
                                     mFaceCount++;
