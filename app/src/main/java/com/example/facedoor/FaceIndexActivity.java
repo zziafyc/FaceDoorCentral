@@ -11,7 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.facedoor.ui.SlideUnlockView;
@@ -26,8 +26,8 @@ import butterknife.ButterKnife;
 public class FaceIndexActivity extends Activity implements DialogInterface.OnClickListener  {
     @Bind(R.id.slideUnlockView)
     SlideUnlockView slideUnlockView;
-    @Bind(R.id.afi_click_layout)
-    RelativeLayout clickLayout;
+    @Bind(R.id.afi_click_img)
+    ImageView clickImg;
     private Vibrator vibrator;
     private EditText editText;
     private static final String PASS_WORD = "123";
@@ -57,7 +57,7 @@ public class FaceIndexActivity extends Activity implements DialogInterface.OnCli
                 }
             }
         });
-        clickLayout.setOnClickListener(new View.OnClickListener() {
+        clickImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(FaceIndexActivity.this, VideoDetect.class);
