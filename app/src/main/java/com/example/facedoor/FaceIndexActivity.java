@@ -80,7 +80,7 @@ public class FaceIndexActivity extends Activity implements DialogInterface.OnCli
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.admin, menu);
         return true;
     }
 

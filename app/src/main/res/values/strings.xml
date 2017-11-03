@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">中用科技有限公司</string>
+    <string name="app_name">人脸声纹机</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">退出</string>
     <string name="appid">57e1115d</string>

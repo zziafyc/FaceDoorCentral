@@ -266,8 +266,6 @@ public class IdentifyActivity extends Activity {
                     e.printStackTrace();
                 }
                 finish();
-                // videodetect may finish itself, we must start it explicitly
-                startActivity(mIntent);
             }
         }.start();
     }
