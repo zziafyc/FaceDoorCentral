@@ -8,9 +8,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.facedoor.util.Moniter;
+import com.example.facedoor.util.PopUpWindowUtils;
 import com.example.facedoor.util.ToastShow;
 
 public class MainActivity extends Activity implements OnClickListener {
@@ -20,6 +22,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
     private Toast mToast;
     EditText pwdView;
+    private ImageView moreImg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +32,11 @@ public class MainActivity extends Activity implements OnClickListener {
 
         EditText editText = (EditText) findViewById(R.id.admin);
         pwdView = (EditText) findViewById(R.id.password);
+        moreImg = (ImageView) findViewById(R.id.img_more);
         editText.setKeyListener(null);
         findViewById(R.id.btn_admin).setOnClickListener(this);
         findViewById(R.id.btn_start).setOnClickListener(this);
+        moreImg.setOnClickListener(this);
 
         startMoniter();
 
@@ -80,6 +85,9 @@ public class MainActivity extends Activity implements OnClickListener {
                 pwdView.setText("");
                 Intent intent = new Intent(this, FaceIndexActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.img_more:
+                PopUpWindowUtils.showPop(MainActivity.this, moreImg);
                 break;
         }
     }

@@ -33,6 +33,7 @@ import android.widget.Toast;
 
 import com.example.facedoor.db.DBUtil;
 import com.example.facedoor.db.GroupManager;
+import com.example.facedoor.util.PopUpWindowUtils;
 import com.example.facedoor.util.ProgressShow;
 import com.example.facedoor.util.ToastShow;
 import com.iflytek.aipsdk.auth.Auth;
@@ -73,6 +74,7 @@ public class RegisterActivity extends Activity implements OnClickListener {
     private ProgressDialog mProDialog;
     private LinearLayout mGroups;
     private View mLayout;
+    private ImageView moreImg;
 
     private File mPictureFile;
     private byte[] mImageData;
@@ -94,6 +96,8 @@ public class RegisterActivity extends Activity implements OnClickListener {
 
         Button btnReg = (Button) findViewById(R.id.online_reg);
         Button btnDelete = (Button) findViewById(R.id.online_delete);
+        moreImg = (ImageView) findViewById(R.id.img_more);
+        moreImg.setOnClickListener(this);
         btnReg.setOnClickListener(this);
         btnDelete.setOnClickListener(this);
         findViewById(R.id.online_pick).setOnClickListener(this);
@@ -248,6 +252,9 @@ public class RegisterActivity extends Activity implements OnClickListener {
                 break;
             case R.id.online_delete:
                 executeModelCommand("delete");
+                break;
+            case R.id.img_more:
+                PopUpWindowUtils.showPop(RegisterActivity.this, moreImg);
                 break;
         }
     }

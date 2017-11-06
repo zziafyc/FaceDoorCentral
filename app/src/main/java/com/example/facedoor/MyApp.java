@@ -49,6 +49,7 @@ public class MyApp extends Application {
 		return db;
 	}
 
+
 	public void addActivity(Activity activity) {
 		activities.add(activity);
 	}

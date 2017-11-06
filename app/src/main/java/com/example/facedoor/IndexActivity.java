@@ -22,6 +22,7 @@ import com.aispeech.dui.dds.exceptions.DDSNotInitCompleteException;
 import com.aispeech.dui.dds.update.DDSUpdateListener;
 import com.aispeech.dui.dds.utils.PrefUtil;
 import com.example.facedoor.base.BaseAppCompatActivity;
+import com.example.facedoor.util.PopUpWindowUtils;
 import com.example.facedoor.util.ToastShow;
 
 import org.json.JSONException;
@@ -35,6 +36,8 @@ import butterknife.Bind;
 public class IndexActivity extends BaseAppCompatActivity implements DialogInterface.OnClickListener {
     @Bind(R.id.backIv)
     ImageView backIv;
+    @Bind(R.id.img_more)
+    ImageView moreImg;
     private static final String TAG = "fyc";
     public MyMessageObserver mMessageObserver;
     public MyReceiver receiver;
@@ -64,6 +67,12 @@ public class IndexActivity extends BaseAppCompatActivity implements DialogInterf
                 editText = new EditText(IndexActivity.this);
                 new AlertDialog.Builder(IndexActivity.this).setTitle("请输入密码").setIcon(R.drawable.ic_launcher)
                         .setView(editText).setPositiveButton("确定", IndexActivity.this).setNegativeButton("取消", null).show();
+            }
+        });
+        moreImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopUpWindowUtils.showPop(IndexActivity.this, moreImg);
             }
         });
     }

@@ -1,38 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/bglight"
-    android:gravity="center"
-    android:orientation="vertical" >
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/bglight"
+              android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btn_register"
-        android:layout_width="400dp"
-        android:layout_height="100dp"
-        android:background="@drawable/btn"
-        android:textSize="35sp"
-        android:text="@string/register"
-        android:textColor="#FFFFFF" />
+    <include layout="@layout/common_app_bar"/>
 
-    <Button
-        android:layout_marginTop="25dp"
-        android:id="@+id/btn_manage_group"
-        android:layout_width="400dp"
-        android:layout_height="100dp"
-        android:textSize="35sp"
-        android:background="@drawable/btn"
-        android:text="@string/manage_group"
-        android:textColor="#FFFFFF" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bglight"
+        android:gravity="center"
+        android:orientation="vertical">
 
-    <Button
-        android:layout_marginTop="25dp"
-        android:id="@+id/btn_query"
-        android:layout_width="400dp"
-        android:textSize="35sp"
-        android:layout_height="100dp"
-        android:background="@drawable/btn"
-        android:text="@string/query"
-        android:textColor="#FFFFFF" />
 
+        <Button
+            android:id="@+id/btn_register"
+            android:layout_width="400dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/btn"
+            android:gravity="center"
+            android:text="@string/register"
+            android:textColor="#FFFFFF"
+            android:textSize="35sp"/>
+
+        <Button
+            android:id="@+id/btn_manage_group"
+            android:layout_width="400dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/btn"
+            android:gravity="center"
+            android:text="@string/manage_group"
+            android:textColor="#FFFFFF"
+            android:textSize="35sp"/>
+
+        <Button
+            android:id="@+id/btn_query"
+            android:layout_width="400dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/btn"
+            android:gravity="center"
+            android:text="@string/query"
+            android:textColor="#FFFFFF"
+            android:textSize="35sp"/>
+
+    </LinearLayout>
 </LinearLayout>

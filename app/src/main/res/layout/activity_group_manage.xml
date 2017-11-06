@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/layout_group_manage"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/bglight"
-    android:orientation="vertical"
-    tools:context=".GroupManageActivity" >
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/layout_group_manage"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/bglight"
+              android:orientation="vertical"
+              tools:context=".GroupManageActivity">
+
+    <include layout="@layout/common_app_bar"/>
 
     <com.example.facedoor.ui.DropEditText
         xmlns:drop="http://schemas.android.com/apk/res/com.example.facedoor"
@@ -15,13 +17,13 @@
         android:layout_height="wrap_content"
         drop:drawableRight="@drawable/drop"
         drop:dropMode="flower_parent"
-        drop:hint="请输入组名" />
+        drop:hint="请输入组名"/>
 
     <LinearLayout
-        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/btn_create"
@@ -31,7 +33,7 @@
             android:background="@drawable/btn"
             android:text="创建"
             android:textColor="#FFFFFF"
-            android:textSize="35sp" />
+            android:textSize="35sp"/>
 
         <Button
             android:id="@+id/btn_delete"
@@ -41,34 +43,34 @@
             android:background="@drawable/btn"
             android:text="删除"
             android:textColor="#FFFFFF"
-            android:textSize="35sp" />
+            android:textSize="35sp"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:layout_marginTop="10dp"
-        android:orientation="horizontal" >
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="数据库相关"
             android:textColor="#FFFFFF"
-            android:textSize="30sp" />
+            android:textSize="30sp"/>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#ffffff" />
+            android:background="#ffffff"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/et_dbip"
@@ -82,7 +84,7 @@
             android:maxLines="1"
             android:singleLine="true"
             android:textColor="#FFFFFF"
-            android:textSize="30sp" >
+            android:textSize="30sp">
         </EditText>
 
         <Button
@@ -93,14 +95,14 @@
             android:background="@drawable/btn"
             android:text="设置"
             android:textColor="#FFFFFF"
-            android:textSize="35sp" />
+            android:textSize="35sp"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/et_dbAgent"
@@ -110,11 +112,11 @@
             android:background="#C4C4C4"
             android:gravity="center"
             android:hint="数据库代理IP"
-            android:textColor="#FFFFFF"
             android:maxLength="15"
             android:maxLines="1"
             android:singleLine="true"
-            android:textSize="30sp" >
+            android:textColor="#FFFFFF"
+            android:textSize="30sp">
         </EditText>
 
         <Button
@@ -125,7 +127,7 @@
             android:background="@drawable/btn"
             android:text="设置"
             android:textColor="#FFFFFF"
-            android:textSize="35sp" />
+            android:textSize="35sp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -133,25 +135,25 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:gravity="center"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="门禁服务器相关"
             android:textColor="#FFFFFF"
-            android:textSize="30sp" />
+            android:textSize="30sp"/>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#ffffff" />
+            android:background="#ffffff"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/et_doorip"
@@ -161,28 +163,28 @@
             android:background="#C4C4C4"
             android:gravity="center"
             android:hint="门禁服务器IP"
-            android:textColor="#FFFFFF"
             android:maxLength="15"
             android:maxLines="1"
             android:singleLine="true"
-            android:textSize="30sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"/>
 
         <Button
             android:id="@+id/btn_doorip"
             android:layout_width="280dp"
             android:layout_height="80dp"
-             android:layout_marginLeft="100dp"
-            android:textColor="#FFFFFF"
+            android:layout_marginLeft="100dp"
             android:background="@drawable/btn"
             android:text="设置"
-            android:textSize="35sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="35sp"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/et_doorController"
@@ -192,29 +194,29 @@
             android:background="#C4C4C4"
             android:gravity="center"
             android:hint="门禁控制器内部编号"
-            android:textColor="#FFFFFF"
             android:maxLength="4"
             android:maxLines="1"
             android:numeric="integer"
             android:singleLine="true"
-            android:textSize="30sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"/>
 
         <Button
             android:id="@+id/btn_doorController"
             android:layout_width="280dp"
             android:layout_height="80dp"
-             android:layout_marginLeft="100dp"
-            android:textColor="#FFFFFF"
+            android:layout_marginLeft="100dp"
             android:background="@drawable/btn"
             android:text="设置"
-            android:textSize="35sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="35sp"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/et_openTime"
@@ -223,23 +225,23 @@
             android:layout_marginLeft="170dp"
             android:background="#C4C4C4"
             android:gravity="center"
-            android:textColor="#FFFFFF"
             android:hint="开门时间"
             android:maxLength="4"
             android:maxLines="1"
             android:numeric="integer"
             android:singleLine="true"
-            android:textSize="30sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"/>
 
         <Button
             android:id="@+id/btn_openTime"
             android:layout_width="280dp"
             android:layout_height="80dp"
-             android:layout_marginLeft="100dp"
-            android:textColor="#FFFFFF"
+            android:layout_marginLeft="100dp"
             android:background="@drawable/btn"
             android:text="设置"
-            android:textSize="35sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="35sp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -247,26 +249,26 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#FFFFFF"
             android:text="平台设置相关"
-            android:textSize="30sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"/>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#ffffff" />
+            android:background="#ffffff"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/et_platformIP"
@@ -275,29 +277,29 @@
             android:layout_marginLeft="170dp"
             android:background="#C4C4C4"
             android:gravity="center"
-            android:textColor="#FFFFFF"
             android:hint="平台IP"
             android:maxLength="15"
             android:maxLines="1"
             android:singleLine="true"
-            android:textSize="30sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"/>
 
         <Button
             android:id="@+id/btn_platformIP"
             android:layout_width="280dp"
             android:layout_height="80dp"
-             android:layout_marginLeft="100dp"
-            android:textColor="#FFFFFF"
+            android:layout_marginLeft="100dp"
             android:background="@drawable/btn"
             android:text="设置"
-            android:textSize="35sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="35sp"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/et_doorNum"
@@ -307,47 +309,48 @@
             android:background="#C4C4C4"
             android:ems="10"
             android:gravity="center"
-            android:textColor="#FFFFFF"
             android:hint="门的编号"
             android:maxLength="6"
             android:maxLines="1"
             android:singleLine="true"
-            android:textSize="30sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"/>
 
         <Button
             android:id="@+id/btn_doorNum"
             android:layout_width="280dp"
             android:layout_height="80dp"
-             android:layout_marginLeft="100dp"
-            android:textColor="#FFFFFF"
+            android:layout_marginLeft="100dp"
             android:background="@drawable/btn"
             android:text="设置"
-            android:textSize="35sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="35sp"/>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:gravity="center"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="私有云服务器相关"
             android:textColor="#FFFFFF"
-            android:textSize="30sp" />
+            android:textSize="30sp"/>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#ffffff" />
+            android:background="#ffffff"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/et_personnalip"
@@ -357,21 +360,21 @@
             android:background="#C4C4C4"
             android:gravity="center"
             android:hint="私有云IP"
-            android:textColor="#FFFFFF"
             android:maxLength="15"
             android:maxLines="1"
             android:singleLine="true"
-            android:textSize="30sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"/>
 
         <Button
             android:id="@+id/btn_personnalip"
             android:layout_width="280dp"
             android:layout_height="80dp"
-             android:layout_marginLeft="100dp"
-            android:textColor="#FFFFFF"
+            android:layout_marginLeft="100dp"
             android:background="@drawable/btn"
             android:text="设置"
-            android:textSize="35sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="35sp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -379,35 +382,35 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#FFFFFF"
             android:text="验证模式设置"
-            android:textSize="30sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"/>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#ffffff" />
+            android:background="#ffffff"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <Spinner
-            android:background="#7FFFD4"
             android:id="@+id/spinner"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginLeft="60dp"
             android:layout_marginRight="60dp"
-            android:entries="@array/mode" />
+            android:background="#7FFFD4"
+            android:entries="@array/mode"/>
     </LinearLayout>
 
 </LinearLayout>

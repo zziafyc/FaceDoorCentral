@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/register_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/bglight"
-    android:focusable="true"
-    android:focusableInTouchMode="true"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:padding="10dp" >
+              android:id="@+id/register_layout"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/bglight"
+              android:focusable="true"
+              android:focusableInTouchMode="true"
+              android:gravity="center_horizontal"
+              android:orientation="vertical">
+
+    <include layout="@layout/common_app_bar"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center" >
+        android:gravity="center">
 
         <TextView
             android:layout_width="match_parent"
@@ -21,7 +22,7 @@
             android:gravity="center"
             android:text="人脸注册界面"
             android:textColor="#FFFFFF"
-            android:textSize="35sp" />
+            android:textSize="35sp"/>
     </LinearLayout>
 
     <ImageView
@@ -29,7 +30,7 @@
         android:layout_width="400dp"
         android:layout_height="400dp"
         android:layout_marginTop="80dp"
-        android:background="@drawable/gg" />
+        android:background="@drawable/gg"/>
 
     <LinearLayout
         android:id="@+id/online_groups"
@@ -38,14 +39,14 @@
         android:layout_marginBottom="45dp"
         android:layout_marginTop="70dp"
         android:gravity="center_horizontal"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/online_number"
@@ -58,7 +59,7 @@
             android:maxLength="6"
             android:singleLine="true"
             android:textColor="#7FFFD4"
-            android:textSize="35sp" >
+            android:textSize="35sp">
         </EditText>
 
         <EditText
@@ -72,7 +73,7 @@
             android:maxLength="8"
             android:singleLine="true"
             android:textColor="#7FFFD4"
-            android:textSize="35sp" >
+            android:textSize="35sp">
         </EditText>
     </LinearLayout>
 
@@ -80,7 +81,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/online_pick"
@@ -90,7 +91,7 @@
             android:background="@drawable/btn"
             android:text="选图"
             android:textColor="#FFFFFF"
-            android:textSize="35sp" />
+            android:textSize="35sp"/>
 
         <Button
             android:id="@+id/online_camera"
@@ -100,14 +101,14 @@
             android:background="@drawable/btn"
             android:text="拍照"
             android:textColor="#FFFFFF"
-            android:textSize="35sp" />
+            android:textSize="35sp"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/online_reg"
@@ -117,7 +118,7 @@
             android:background="@drawable/btn"
             android:text="注册"
             android:textColor="#FFFFFF"
-            android:textSize="35sp" />
+            android:textSize="35sp"/>
 
         <Button
             android:id="@+id/online_delete"
@@ -127,7 +128,7 @@
             android:background="@drawable/btn"
             android:text="删除"
             android:textColor="#FFFFFF"
-            android:textSize="35sp" />
+            android:textSize="35sp"/>
     </LinearLayout>
 
 </LinearLayout>

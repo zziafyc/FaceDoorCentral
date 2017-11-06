@@ -30,6 +30,7 @@ import com.example.facedoor.door.Openable;
 import com.example.facedoor.door.PlatformComm;
 import com.example.facedoor.util.DemoConstant;
 import com.example.facedoor.util.ImageFile;
+import com.example.facedoor.util.PopUpWindowUtils;
 import com.example.facedoor.util.ProgressShow;
 import com.example.facedoor.util.ToastShow;
 import com.example.facedoor.util.TonePlayer;
@@ -63,6 +64,7 @@ public class IdentifyActivity extends Activity {
     private String pwd = "";
     private byte[] audioBuff = new byte[10 * 1024 * 1024];
     private int audioLen;
+    private ImageView moreImg;
 
     private String mGroupId;
     private TextView mResultEditText;
@@ -94,6 +96,13 @@ public class IdentifyActivity extends Activity {
         mToast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
         mScore = (TextView) findViewById(R.id.id_score);
         mResultEditText = (TextView) findViewById(R.id.vocal_edit_result);
+        moreImg = (ImageView) findViewById(R.id.img_more);
+        moreImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopUpWindowUtils.showPop(IdentifyActivity.this, moreImg);
+            }
+        });
 
         initUI();
         getPhoto();

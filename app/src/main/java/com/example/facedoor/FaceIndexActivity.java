@@ -4,14 +4,19 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.facedoor.ui.SlideUnlockView;
@@ -23,14 +28,18 @@ import butterknife.ButterKnife;
  * Created by fyc on 2017/11/2.
  */
 
-public class FaceIndexActivity extends Activity implements DialogInterface.OnClickListener  {
+public class FaceIndexActivity extends Activity implements DialogInterface.OnClickListener {
     @Bind(R.id.slideUnlockView)
     SlideUnlockView slideUnlockView;
     @Bind(R.id.afi_click_img)
     ImageView clickImg;
+    @Bind(R.id.img_more)
+    ImageView moreImg;
     private Vibrator vibrator;
     private EditText editText;
     private static final String PASS_WORD = "123";
+    PopupWindow mPopupWindow;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +73,12 @@ public class FaceIndexActivity extends Activity implements DialogInterface.OnCli
                 startActivity(intent);
             }
         });
+        moreImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPop(FaceIndexActivity.this, moreImg);
+            }
+        });
     }
 
     @Override
@@ -78,6 +93,7 @@ public class FaceIndexActivity extends Activity implements DialogInterface.OnCli
         super.onDestroy();
         ButterKnife.unbind(this);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.admin, menu);
@@ -99,11 +115,33 @@ public class FaceIndexActivity extends Activity implements DialogInterface.OnCli
     @Override
     public void onClick(DialogInterface dialog, int which) {
         if (editText.getText().toString().equals(PASS_WORD)) {
-            Intent intent=new Intent(FaceIndexActivity.this,MainActivity.class);
+            Intent intent = new Intent(FaceIndexActivity.this, MainActivity.class);
             startActivity(intent);
+            mPopupWindow.dismiss();
             finish();
         } else {
             Toast.makeText(FaceIndexActivity.this, "密码错", Toast.LENGTH_SHORT).show();
         }
     }
+
+    public void showPop(final Activity context, View parent) {
+        final View contentView = LayoutInflater.from(context).inflate(R.layout.pop_exit, null, false);
+        TextView textView = (TextView) contentView.findViewById(R.id.exit);
+        textView.setText("进入管理员页");
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editText = new EditText(FaceIndexActivity.this);
+                new AlertDialog.Builder(FaceIndexActivity.this).setTitle("请输入密码").setIcon(R.drawable.ic_launcher)
+                        .setView(editText).setPositiveButton("确定", FaceIndexActivity.this).setNegativeButton("取消", null).show();
+            }
+        });
+        mPopupWindow = new PopupWindow(contentView, 150, 40, true);
+        mPopupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        mPopupWindow.setOutsideTouchable(true);
+        mPopupWindow.setTouchable(true);
+        mPopupWindow.showAsDropDown(parent, 20, 10);
+
+    }
+
 }

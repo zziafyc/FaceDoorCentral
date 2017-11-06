@@ -32,6 +32,7 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 import android.widget.Toast;
@@ -39,6 +40,7 @@ import android.widget.Toast;
 import com.example.facedoor.util.FaceRect;
 import com.example.facedoor.util.FaceUtil;
 import com.example.facedoor.util.ParseFDResult;
+import com.example.facedoor.util.PopUpWindowUtils;
 import com.iflytek.cloud.FaceDetector;
 import com.iflytek.cloud.util.Accelerometer;
 
@@ -57,6 +59,7 @@ public class VideoDetect extends Activity implements DialogInterface.OnClickList
     private final static int FACE_HEIGHT = 320;
     private static final String PASS_WORD = "123";
     private EditText editText;
+    private ImageView moreImg;
 
     private SurfaceView mPreviewSurface;
     private SurfaceView mFaceSurface;
@@ -150,6 +153,7 @@ public class VideoDetect extends Activity implements DialogInterface.OnClickList
     }
 
     private void initUI() {
+        moreImg = (ImageView) findViewById(R.id.img_more);
         mPreviewSurface = (SurfaceView) findViewById(R.id.sfv_preview);
         mFaceSurface = (SurfaceView) findViewById(R.id.sfv_face);
 
@@ -180,6 +184,12 @@ public class VideoDetect extends Activity implements DialogInterface.OnClickList
 
         setSurfaceSize();
         mToast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
+        moreImg.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopUpWindowUtils.showPop(VideoDetect.this, moreImg);
+            }
+        });
     }
 
     private void openCamera() {
