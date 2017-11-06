@@ -66,8 +66,8 @@ public class MainActivity extends Activity implements OnClickListener {
         super.onDestroy();
         MyApp myApp = (MyApp) MainActivity.this.getApplication();
         myApp.removeActivity(this);
-        // TODO 这个服务暂时不关闭
-        //   stopMoniter();
+        // TODO 这个服务暂时关闭
+         stopMoniter();
     }
 
     @Override
