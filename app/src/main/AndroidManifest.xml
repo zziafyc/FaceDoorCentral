@@ -116,10 +116,10 @@
         <activity android:name=".QueryActivity2"/>
 
         <service
-            android:name="com.example.facedoor.util.Moniter"
-            android:exported="false"
-            android:process=":moniter">
-        </service>
+        android:name="com.example.facedoor.util.Moniter"
+        android:exported="false"
+        android:process=":moniter">
+    </service>
         <service
             android:name=".DDSService">
         </service>

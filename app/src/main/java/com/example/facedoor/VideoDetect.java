@@ -277,7 +277,7 @@ public class VideoDetect extends Activity implements DialogInterface.OnClickList
             public void run() {
                 surfaceHolder = mFaceSurface.getHolder();
                 while (!mStopTrack) {
-                    //合理规定时间为1分钟
+                    //规定检测时间为：
                     if (System.currentTimeMillis() - lastTime > 30000) {
                         finish();
                         break;

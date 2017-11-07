@@ -38,7 +38,7 @@ public class MainActivity extends Activity implements OnClickListener {
         findViewById(R.id.btn_start).setOnClickListener(this);
         moreImg.setOnClickListener(this);
 
-        startMoniter();
+        //startMoniter();
 
         MyApp myApp = (MyApp) MainActivity.this.getApplication();
         myApp.addActivity(this);
@@ -67,7 +67,7 @@ public class MainActivity extends Activity implements OnClickListener {
         MyApp myApp = (MyApp) MainActivity.this.getApplication();
         myApp.removeActivity(this);
         // TODO 这个服务暂时关闭
-         stopMoniter();
+         //stopMoniter();
     }
 
     @Override
