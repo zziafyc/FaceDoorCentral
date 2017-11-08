@@ -40,9 +40,9 @@ public class MyApp extends Application {
 		handler.init(getApplicationContext());
 
 		//启动dds服务
-		serviceIntent = new Intent(this, DDSService.class);
+		/*serviceIntent = new Intent(this, DDSService.class);
 		serviceIntent.setAction("start");
-		startService(serviceIntent);
+		startService(serviceIntent);*/
 	}
 
 	public DBManage getDBManage() {
@@ -65,7 +65,7 @@ public class MyApp extends Application {
 			activity.finish();
 		}
 		db.closeDB();
-		stopService(serviceIntent);
+		//stopService(serviceIntent);
 		System.exit(1);
 	}
 }
