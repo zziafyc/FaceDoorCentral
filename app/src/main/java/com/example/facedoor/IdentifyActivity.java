@@ -244,8 +244,7 @@ public class IdentifyActivity extends Activity {
         // Log.e("IdentifyActivity@identify", MainActivity.db ==
         // null?"null":"not null");
         // ArrayList<String> groupIdList = MainActivity.db.getGroupId();
-        MyApp myApp = (MyApp) this.getApplication();
-        ArrayList<String> groupIdList = myApp.getDBManage().getGroupId();
+        ArrayList<String> groupIdList = MyApp.getDBManage(this).getGroupId();
         mGroupId = null;
         if (groupIdList != null && groupIdList.size() != 0) {
             mGroupId = groupIdList.get(0);
@@ -310,6 +309,10 @@ public class IdentifyActivity extends Activity {
             final String name1 = str[1];
             Openable door = new DoorJH(IdentifyActivity.this);
             door.open();
+            if (!TextUtils.isEmpty(door.getExceptionShow())) {
+                ToastShow.showTip(mToast, door.getExceptionShow());
+
+            }
             TonePlayer.playTone(IdentifyActivity.this, DemoConstant.SUCCESS, null);
             runOnUiThread(new Runnable() {
                 @Override

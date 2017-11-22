@@ -71,8 +71,7 @@ public class AllUsersActivity extends BaseAppCompatActivity {
 
     private void initEvents() {
         mToast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
-        MyApp myApp = (MyApp) this.getApplication();
-        ArrayList<String> groupIds = myApp.getDBManage().getGroupId();
+        ArrayList<String> groupIds = MyApp.getDBManage(this).getGroupId();
         if (groupIds == null || groupIds.size() == 0) {
             ToastShow.showTip(mToast, "本机未建立组");
             return;

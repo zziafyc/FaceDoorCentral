@@ -69,4 +69,14 @@ public class DoorZY implements Openable {
 			}
 		});
 	}
+
+	@Override
+	public String getExceptionShow() {
+		return null;
+	}
+
+	@Override
+	public void setExceptionShow(String exceptionShow) {
+
+	}
 }

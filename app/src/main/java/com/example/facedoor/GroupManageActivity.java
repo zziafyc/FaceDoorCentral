@@ -7,6 +7,7 @@ import android.content.DialogInterface.OnCancelListener;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 
 import com.example.facedoor.db.DBUtil;
 import com.example.facedoor.db.GroupManager;
+import com.example.facedoor.model.Group;
 import com.example.facedoor.ui.DropEditText;
 import com.example.facedoor.util.PopUpWindowUtils;
 import com.example.facedoor.util.ToastShow;
@@ -34,6 +36,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import rx.Observable;
+import rx.Observer;
+import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.functions.Func1;
@@ -55,6 +59,7 @@ public class GroupManageActivity extends Activity implements OnClickListener {
     private EditText mDbAgent;
     private EditText mPersonal;
     private ImageView moreImg;
+    private String groupId2;
 
     // 身份验证对象
     private IdentityVerifier mIdVerifier;
@@ -66,10 +71,12 @@ public class GroupManageActivity extends Activity implements OnClickListener {
 
         Button btnCreate = (Button) findViewById(R.id.btn_create);
         Button btnDelete = (Button) findViewById(R.id.btn_delete);
+        Button btnAdd = (Button) findViewById(R.id.btn_add);
         moreImg = (ImageView) findViewById(R.id.img_more);
         moreImg.setOnClickListener(this);
         btnCreate.setOnClickListener(this);
         btnDelete.setOnClickListener(this);
+        btnAdd.setOnClickListener(this);
         findViewById(R.id.btn_dbip).setOnClickListener(this);
         findViewById(R.id.btn_doorip).setOnClickListener(this);
         findViewById(R.id.btn_doorController).setOnClickListener(this);
@@ -201,6 +208,8 @@ public class GroupManageActivity extends Activity implements OnClickListener {
             case R.id.btn_delete:
                 deleteGroup();
                 break;
+            case R.id.btn_add:
+                addGroup();
             case R.id.btn_dbip:
                 setDBIP();
                 break;
@@ -273,9 +282,9 @@ public class GroupManageActivity extends Activity implements OnClickListener {
     @Override
     protected void onResume() {
         super.onResume();
-        MyApp myApp = (MyApp) this.getApplication();
-        mGroupDrop.setStringList(this, myApp.getDBManage().getGroupName(), myApp.getDBManage().getGroupId());
+        ArrayList<Group> groups = MyApp.getDBManage(this).getGroups();
         BaseAdapter adp = mGroupDrop.getAdapter();
+        mGroupDrop.setList(this, groups);
         if (adp != null) {
             adp.notifyDataSetChanged();
         }
@@ -302,8 +311,7 @@ public class GroupManageActivity extends Activity implements OnClickListener {
     }
 
     private void createGroup() {
-        MyApp myApp = (MyApp) this.getApplication();
-        ArrayList<String> groupId = myApp.getDBManage().getGroupId();
+        ArrayList<String> groupId = MyApp.getDBManage(this).getGroupId();
         if (groupId.size() != 0) {
             ToastShow.showTip(mToast, "鉴别组已建立");
             return;
@@ -328,8 +336,7 @@ public class GroupManageActivity extends Activity implements OnClickListener {
                 if (responseCode.equals("0000")) {
                     dbUtil.addGroup(groupName);
                     // MainActivity.db.insertGroup(groupName, groupIdStr);
-                    MyApp myApp = (MyApp) GroupManageActivity.this.getApplication();
-                    myApp.getDBManage().insertGroup(groupName, groupIdStr);
+                    MyApp.getDBManage(GroupManageActivity.this).insertGroup(groupName, groupIdStr);
                 }
                 runOnUiThread(new Runnable() {
                     @Override
@@ -362,8 +369,7 @@ public class GroupManageActivity extends Activity implements OnClickListener {
                     DBUtil dbUtil = new DBUtil(GroupManageActivity.this);
                     dbUtil.deleteGroup(Integer.parseInt(groupId));
                     // MainActivity.db.deleteGroup(groupId);
-                    MyApp myApp = (MyApp) GroupManageActivity.this.getApplication();
-                    myApp.getDBManage().deleteGroup(groupId);
+                    MyApp.getDBManage(GroupManageActivity.this).deleteGroup(groupId);
                 }
                 runOnUiThread(new Runnable() {
                     @Override
@@ -379,6 +385,76 @@ public class GroupManageActivity extends Activity implements OnClickListener {
             }
         };
         new Thread(dbOperation).start();
+    }
+
+    private void addGroup() {
+        if (TextUtils.isEmpty(mDBIP.getText().toString())) {
+            ToastShow.showTip(mToast, "sorry，请先设置数据库IP");
+            return;
+        }
+        String groupName = mGroupDrop.getText();
+        if (TextUtils.isEmpty(groupName)) {
+            mGroupDrop.requestFocus();
+            ToastShow.showTip(mToast, "sorry，组编号不能为空");
+            return;
+        }
+        startProgress("正在添加组...");
+        //人脸识别有结果后，执行保存图片，图片保存完之后，就进行页面的跳转
+        groupId2 = mGroupDrop.getText().toString();
+        Observable.create(new Observable.OnSubscribe<String>() {
+
+            @Override
+            public void call(Subscriber<? super String> subscriber) {
+                DBUtil dbUtil = new DBUtil(GroupManageActivity.this);
+                String name = null;
+                try {
+                    name = dbUtil.queryGroup(groupId2);
+                    subscriber.onNext(name);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        })
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable throwable) {
+
+                    }
+
+                    @Override
+                    public void onNext(String groupName) {
+                        stopProgress();
+                        if (!TextUtils.isEmpty(groupName)) {
+                            //插入到数据库中
+                            ArrayList<String> groupIds = MyApp.getDBManage(GroupManageActivity.this).getGroupId();
+                            if (groupIds != null && groupIds.size() > 0) {
+                                if (groupIds.get(0).equals(groupId2)) {
+                                    ToastShow.showTip(mToast, "sorry，该鉴别组已建立");
+                                    return;
+                                }
+                            } else {
+                                MyApp.getDBManage(GroupManageActivity.this).insertGroup(groupName, groupId2);
+                            }
+                            //刷新列表适配器
+                            ArrayList<Group> groups = MyApp.getDBManage(GroupManageActivity.this).getGroups();
+                            Log.e("fyc哈", groups.size() + "");
+                            BaseAdapter adp = mGroupDrop.getAdapter();
+                            mGroupDrop.setList(GroupManageActivity.this, groups);
+                            if (adp != null) {
+                                adp.notifyDataSetChanged();
+                            }
+                        } else {
+                            ToastShow.showTip(GroupManageActivity.this, "sorry，该组不存在");
+                        }
+                    }
+                });
     }
 
     private Spinner spinner;

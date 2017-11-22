@@ -1,5 +1,10 @@
 package com.example.facedoor.door;
 
 public interface Openable {
-	public void open();
+    void open();
+
+    String getExceptionShow();
+
+    void setExceptionShow(String exceptionShow);
+
 }

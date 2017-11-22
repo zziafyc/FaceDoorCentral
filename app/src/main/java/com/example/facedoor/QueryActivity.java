@@ -94,8 +94,7 @@ public class QueryActivity extends Activity implements OnClickListener {
                 break;
             case R.id.btn_query_local_users:
                 // ArrayList<String> groupIds = MainActivity.db.getGroupId();
-                MyApp myApp = (MyApp) this.getApplication();
-                ArrayList<String> groupIds = myApp.getDBManage().getGroupId();
+                ArrayList<String> groupIds = MyApp.getDBManage(this).getGroupId();
                 if (groupIds.size() == 0) {
                     ToastShow.showTip(mToast, "本机未建立组");
                     return;
