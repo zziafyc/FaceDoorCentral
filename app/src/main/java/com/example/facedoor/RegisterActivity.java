@@ -42,6 +42,7 @@ import com.iflytek.aipsdk.auth.IAuthListener;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -290,8 +291,21 @@ public class RegisterActivity extends Activity implements OnClickListener {
 
             fileSrc = mPictureFile.getAbsolutePath();
             updateGallery(fileSrc);
-            // 跳转到图片裁剪页面
-            cropPicture(this, Uri.fromFile(new File(fileSrc)));
+            // 跳转到图片裁剪页面,需要先进行图片镜像翻转
+            Bitmap bitmap = BitmapFactory.decodeFile(fileSrc);
+            bitmap = flipBitmap(bitmap);
+            File file = new File(getImagePath2());//将要保存图片的路径
+            try {
+                BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+                bos.flush();
+                bos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            cropPicture(this, Uri.fromFile(new File(getImagePath2())));
+
 
         } else if (requestCode == REQUEST_INTENT_CROP) {
             // 获取返回数据
@@ -523,6 +537,20 @@ public class RegisterActivity extends Activity implements OnClickListener {
             folder.mkdirs();
         }
         path += "crop.jpg";
+        return path;
+    }
+
+    private String getImagePath2() {
+        String path;
+        if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            return null;
+        }
+        path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/FaceDoor/";
+        File folder = new File(path);
+        if (folder != null && !folder.exists()) {
+            folder.mkdirs();
+        }
+        path += "flip.jpg";
         return path;
     }
 
@@ -782,4 +810,14 @@ public class RegisterActivity extends Activity implements OnClickListener {
 
         }
     };
+
+    private Bitmap flipBitmap(Bitmap bmp) {
+        int width = bmp.getWidth();
+        int height = bmp.getHeight();
+
+        Matrix matrix = new Matrix();
+        matrix.postScale(-1, 1);
+        Bitmap flip = Bitmap.createBitmap(bmp, 0, 0, width, height, matrix, true);
+        return flip;
+    }
 }

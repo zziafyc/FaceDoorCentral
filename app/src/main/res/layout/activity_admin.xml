@@ -16,17 +16,6 @@
 
 
         <Button
-            android:id="@+id/btn_register"
-            android:layout_width="400dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/btn"
-            android:gravity="center"
-            android:text="@string/register"
-            android:textColor="#FFFFFF"
-            android:textSize="35sp"/>
-
-        <Button
             android:id="@+id/btn_manage_group"
             android:layout_width="400dp"
             android:layout_height="100dp"
@@ -35,6 +24,17 @@
             android:background="@drawable/btn"
             android:gravity="center"
             android:text="@string/manage_group"
+            android:textColor="#FFFFFF"
+            android:textSize="35sp"/>
+
+        <Button
+            android:id="@+id/btn_register"
+            android:layout_width="400dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/btn"
+            android:gravity="center"
+            android:text="@string/register"
             android:textColor="#FFFFFF"
             android:textSize="35sp"/>
 

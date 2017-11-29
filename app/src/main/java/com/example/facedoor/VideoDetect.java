@@ -361,10 +361,9 @@ public class VideoDetect extends Activity implements DialogInterface.OnClickList
 
                                         }
                                     }
-                                    if (frontCamera) {
-                                        cameraPic = flipBitmap(cameraPic);
-                                    }
-                                    cameraPic = FaceUtil.rotateImage(270, cameraPic);
+                                    cameraPic = flipBitmap(cameraPic);
+
+                                    cameraPic = FaceUtil.rotateImage(90, cameraPic);
                                     saveBitmapToFile(cameraPic, "cameraRotated.jpg");
                                     cameraPic = cropWithFace(cameraPic, faces);
                                     saveBitmapToFile(cameraPic, "crop.jpg");
